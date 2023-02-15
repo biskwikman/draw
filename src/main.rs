@@ -50,6 +50,16 @@ fn main() {
     let _gl_context = window.gl_create_context().unwrap();
     gl::load_with(|s| video_subsystem.gl_get_proc_address(s) as _);
 
+    let shader = Shader::new("rsc/shader/shader.vs", "rsc/shader/shader/fs");
+
+    // Set buffer
+    #[rustfmt::skip]
+    let buffer_array: [f32; BUF_LEN] = [
+        -1.0, -1.0, 0.0,
+        1.0, -1.0, 0.0,
+        0.0, 1.0, 0.0,
+    ];
+
     let mut canvas = window.into_canvas().build().unwrap();
     canvas.set_draw_color(Color::RGB(255, 255, 255));
 
